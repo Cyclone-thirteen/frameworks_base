@@ -1681,7 +1681,11 @@ public final class SystemServer implements Dumpable {
             t.traceBegin("StartPowerOffAlarmService");
             mSystemServiceManager.startService(PowerOffAlarmService.class);
             t.traceEnd();
-
+            
+            t.traceBegin("StartSmart5gService");
+            mSystemServiceManager.startService(Smart5gService.class);
+            t.traceEnd();
+            
             if (context.getResources().getBoolean(R.bool.config_dozeAlwaysOnDisplayAvailable)) {
                 t.traceBegin("AutoAODService");
                 mSystemServiceManager.startService(AutoAODService.class);
@@ -2559,6 +2563,7 @@ public final class SystemServer implements Dumpable {
                 mSystemServiceManager.startService(CustomGlobalActionsService.class);
                 t.traceEnd();
             }
+
             // LiveDisplay
             if (!mOnlyCore){
                 t.traceBegin("StartLiveDisplayService");
